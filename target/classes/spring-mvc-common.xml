@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Scan all Controllers. -->
+	<context:component-scan base-package="cn.**.web.**"/>
+
+	<!-- 启用spring mvc 注解 -->
+    <context:annotation-config />
+    
+    <!-- Spring MVC Annotation Driven. -->
+	<mvc:annotation-driven/>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/static/**/*" />
+			<bean
+				class="cn.zy.commons.webdev.interceptor.ParameterLoadingInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+    <!-- Manual RequestMappingHandlerAdapter configuration. -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<util:list id="beanList">
+				<bean id="stringHttpMessageConverter"
+				      class="org.springframework.http.converter.StringHttpMessageConverter">
+					<constructor-arg name="defaultCharset" value="UTF-8" />
+				</bean>
+				<!--				<bean id="mappingJackson2HttpMessageConverter"
+									  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+								<bean id="byteArrayHttpMessageConverter"
+									  class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+								<bean id="sourceHttpMessageConverter"
+									  class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>-->
+			</util:list>
+		</property>
+	</bean>
+	<util:properties id="appConfig" location="classpath:config.properties"/>
+
+</beans>
