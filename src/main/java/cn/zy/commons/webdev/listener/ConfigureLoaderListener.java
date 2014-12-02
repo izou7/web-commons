@@ -6,9 +6,8 @@ import javax.servlet.ServletContextListener;
 import cn.zy.commons.webdev.props.ApplicationConfiguration;
 
 /**
- * Load properties from '.properties' file when web container starting.
  * 
- * @author LuoChuan
+ * @author zy
  * @version 1.0.0
  * @since 1.0.0
  */
