@@ -1,7 +1,0 @@
-cn\zy\commons\webdev\interceptor\ParameterLoadingInterceptor.class
-cn\zy\commons\webdev\constant\ResponseStatusCode.class
-cn\zy\commons\webdev\vo\SEO.class
-cn\zy\commons\webdev\http\RestResponse.class
-cn\zy\commons\webdev\vo\Project.class
-cn\zy\commons\webdev\vo\Page.class
-cn\zy\commons\webdev\props\ApplicationConfiguration.class

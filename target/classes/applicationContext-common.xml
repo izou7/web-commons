@@ -13,7 +13,23 @@
 
 	<!-- Scan all Spring components. -->
 	<context:component-scan base-package="cn.**"/>
-
+		<!-- Manual RequestMappingHandlerAdapter configuration. -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<util:list id="beanList">
+				<bean id="stringHttpMessageConverter"
+				      class="org.springframework.http.converter.StringHttpMessageConverter">
+					<constructor-arg name="defaultCharset" value="UTF-8" />
+				</bean>
+				<!--				<bean id="mappingJackson2HttpMessageConverter"
+									  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+								<bean id="byteArrayHttpMessageConverter"
+									  class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+								<bean id="sourceHttpMessageConverter"
+									  class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>-->
+			</util:list>
+		</property>
+	</bean>
 	<!-- Placeholder. -->
 	<context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>
 
