@@ -4,7 +4,7 @@
 	<groupId>cn.zy.commons.webdev</groupId>
 	<artifactId>web-commons</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>web-commons</name>
 	<url>http://maven.apache.org</url>
 	<properties>

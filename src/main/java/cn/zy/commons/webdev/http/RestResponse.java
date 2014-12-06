@@ -1,13 +1,15 @@
 package cn.zy.commons.webdev.http;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * RESTful response transfer object.
  *
  * @author zy
- * @version 1.0.0
+ * @version 2.0.0
  * @since 2.0.1
  */
 public class RestResponse {
@@ -24,27 +26,17 @@ public class RestResponse {
 
 	/** Response header. */
 	private Map<String, Object> header;
+	
+	private List<Map<String,Object>> errors;
 
 	/** Response body. */
 	private Map<String, Object> body;
 
-	/**
-	 * Response data.<br/>
-	 * NOTICE: This field is deprecated since 2.0.0.
-	 * Using {@link cn.videoworks.commons.webdev.http.RestResponse#header}
-	 * and {@link cn.videoworks.commons.webdev.http.RestResponse#body} please.
-	 *
-	 * @deprecated This field is not recommended.
-	 * Instead of {@link cn.videoworks.commons.webdev.http.RestResponse#header}
-	 * and {@link cn.videoworks.commons.webdev.http.RestResponse#body}.
-	 */
-	@Deprecated
-	private Map<String, Object> data;
 
 	public RestResponse() {
 		this.header = new HashMap<>();
 		this.body = new HashMap<>();
-		data = body;
+		this.errors = new ArrayList<>();
 	}
 
 	public int getStatusCode() {
@@ -71,8 +63,9 @@ public class RestResponse {
 		return body;
 	}
 
-	@Deprecated
-	public Map<String, Object> getData() {
-		return data;
+
+	public List<Map<String, Object>> getErrors() {
+		return errors;
 	}
+
 }
